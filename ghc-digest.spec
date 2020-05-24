@@ -7,7 +7,7 @@ Summary:	Various cryptographic hashes for bytestrings; CRC32 and Adler32 for now
 Summary(pl.UTF-8):	Różne kryptograficzne skróty łańcuchów bajtów: CRC32 i Adler32
 Name:		ghc-%{pkgname}
 Version:	0.0.1.2
-Release:	1
+Release:	2
 License:	BSD
 Group:		Development/Languages
 #Source0Download: http://hackage.haskell.org/package/digest
@@ -120,16 +120,18 @@ rm -rf $RPM_BUILD_ROOT
 %doc LICENSE
 %{_libdir}/%{ghcdir}/package.conf.d/%{pkgname}.conf
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/HSdigest-%{version}.o
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdigest-%{version}.a
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdigest-%{version}-*.so
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdigest-%{version}-*.a
+%exclude %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdigest-%{version}-*_p.a
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Digest
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Digest/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Digest/*.dyn_hi
 
 %if %{with prof}
 %files prof
 %defattr(644,root,root,755)
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdigest-%{version}_p.a
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdigest-%{version}-*_p.a
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Digest/*.p_hi
 %endif
 
